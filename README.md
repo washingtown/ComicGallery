@@ -37,9 +37,9 @@ cd ComicGallery
 dotnet run
 ```
 访问地址 `http://localhost:5000/`
-登录系统，默认账户Admin，密码123。
-进入“扫描”页面。点击“开始扫描”，等待扫描完毕。
-欣赏吧！
+登录系统，默认账户Admin，密码123。  
+进入“扫描”页面。点击“开始扫描”，等待扫描完毕。  
+欣赏吧！  
 ### 权限管理
 项目有2个角色，Admin和Reader，Admin可以管理账户和扫描漫画，Reader只能看。
 ## Docker部署
