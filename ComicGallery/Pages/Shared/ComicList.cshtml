@@ -1,0 +1,21 @@
+﻿@model List<Comic>
+
+<div class="row">
+    @foreach (var comic in Model)
+    {
+        <div class="col-md-2 col-sm-4 col-xs-12">
+            <div class="cover-card card h-100">
+                <div>
+                    <a asp-page="/Read/Comic" asp-route-id="@comic.Id">
+                        <img class="cover-img card-img-top" src="/Image/@comic.Id/@comic.CoverImage" />
+                    </a>
+                </div>
+                <div class="card-body p-1">
+                    <a asp-page="/Read/Comic" asp-route-id="@comic.Id">
+                        <h5 class="small text-gray-dark">@comic.Title</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

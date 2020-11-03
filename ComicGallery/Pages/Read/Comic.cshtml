@@ -1,0 +1,20 @@
+﻿@page "{id:int}"
+@model ComicGallery.Pages.Read.ComicModel
+@{
+    ViewData["Title"] = Model.Comic.Title;
+}
+<div class="row">
+    @foreach (var image in Model.Comic.ImageFiles)
+    {
+        <div class="col-md-6 col-sm-12">
+            <img class="lazyload img-fluid border m-2" src="~/img/loading.gif"
+                 data-src="/Image/@Model.Id/@image" />
+        </div>
+    }
+
+</div>
+
+@section Scripts{
+    <script src="~/lib/lazyload/lazyload.js"></script>
+    <script src="~/js/ReadComic.js"></script>
+}

@@ -1,0 +1,18 @@
+﻿@page
+@model ComicGallery.Pages.ScanModel
+@{
+    ViewData["Title"] = "扫描";
+}
+<div class="row">
+    <div class="col-md-2 col-sm-12">
+        <button id="start-scan-btn" class="btn btn-primary">开始扫描</button>
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <h5 id="scan-message"></h5>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/scan.js"></script>
+}

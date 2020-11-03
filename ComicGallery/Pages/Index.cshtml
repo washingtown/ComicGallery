@@ -1,0 +1,25 @@
+﻿@page
+@model ComicGallery.Pages.IndexModel
+@{
+    ViewData["Title"] = "首页";
+}
+@foreach (var gallery in Model.Galleries)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <div class="card-title">
+                        @gallery.Name
+                    </div>
+                    <div class="card-tools">
+                        <a asp-page="/Read/Gallery" asp-route-id="@gallery.Id">更多...</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @await Html.PartialAsync("ComicList", gallery.Comics)
+                </div>
+            </div>
+        </div>
+    </div>
+}

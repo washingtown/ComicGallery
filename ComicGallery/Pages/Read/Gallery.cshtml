@@ -1,0 +1,11 @@
+﻿@page "{Id:int}"
+@model ComicGallery.Pages.Read.GalleryModel
+@{
+    ViewData["Title"] = Model.GalleryName;
+}
+@await Html.PartialAsync("ComicList", Model.Comics)
+<div class="row">
+    <div class="col-md-12">
+        @await Html.PartialAsync("Pagination", Model.Pagination)
+    </div>
+</div>

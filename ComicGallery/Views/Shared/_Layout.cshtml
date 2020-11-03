@@ -1,0 +1,82 @@
+﻿@using Microsoft.Extensions.Options;
+@using ComicGallery.Common;
+@inject IOptions<ApplicationInfos> AppInfo
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @AppInfo.Value.Name</title>
+    <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/ionicons/ionicons.min.css" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/lib/adminlte/css/adminlte.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <!--上方导航栏-->
+        <nav class="main-header navbar navbar-expand-md navbar-white navbar-light">
+            <div class="container">
+                <!--LOGO-->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/lib/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                         style="opacity: .8">
+                    <span class="brand-text font-weight-light">@AppInfo.Value.Name</span>
+                </a>
+                <!--小屏上的显示导航栏按钮-->
+                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--导航栏左侧链接-->
+                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                    <partial name="_MenuPartial.cshtml" />
+                </div>
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <partial name="_LoginPartial.cshtml" />
+                </ul>
+            </div>
+        </nav>
+        <!--导航栏结束-->
+        <!--页面主体-->
+        <div class="content-wrapper">
+            <!--标题-->
+            <div class="content-header">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <!--TODO 面包屑导航-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--正文-->
+            <div class="content">
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        <footer class="main-footer">
+            <div class="container">
+                <div class="float-right d-none d-sm-inline">
+                    Themed by <a href="https://adminlte.io">AdminLTE.io</a>
+                </div>
+                <strong>
+                    &copy; 2020 - ComicGallery - All rights reserved.
+                </strong>
+            </div>
+        </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/adminlte/js/adminlte.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

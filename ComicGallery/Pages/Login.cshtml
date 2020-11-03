@@ -1,0 +1,91 @@
+﻿@page
+@using Microsoft.Extensions.Options;
+@using ComicGallery.Common;
+@inject IOptions<ApplicationInfos> AppInfo
+@model ComicGallery.Pages.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录 - @AppInfo.Value.Name</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/lib/ionicons/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/lib/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/lib//adminlte/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="/lib/fonts/fonts.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a asp-page="/Login"><b>@AppInfo.Value.Name</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">请登录</p>
+                <form method="post">
+                    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+                    <div class="form-group mb-3">
+                        <div class="input-group">
+                            <input asp-for="Input.Username" class="form-control" placeholder="请输入用户名">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Input.Username" class="text-danger text-sm"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="input-group">
+                            <input asp-for="Input.Password" class="form-control" placeholder="请输入密码">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Input.Password" class="text-danger text-sm"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input asp-for="Input.RememberMe">
+                                <label asp-for="Input.RememberMe">
+                                    下次自动登录
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">登录</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/lib/adminlte/js/adminlte.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+</body>
+</html>

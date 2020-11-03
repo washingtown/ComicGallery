@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ComicGallery.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject RoleManager<ApplicationRole> RoleManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var CurrentUser = await UserManager.GetUserAsync(User);
+}
+@*上方目录菜单*@
+@*TODO: 权限管理*@
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" href="/">首页</a>
+    </li>
+    @if (await UserManager.IsInRoleAsync(CurrentUser, SeedData.AdminRoleName))
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-page="/Scan">扫描</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-page="/Manage/Users">管理</a>
+        </li>
+    }
+</ul>

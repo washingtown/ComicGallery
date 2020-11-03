@@ -1,0 +1,15 @@
+﻿@model ComicGallery.ViewModels.PaginationModel
+<ul class="pagination">
+    @foreach (var item in Model.Items)
+    {
+
+        var routeData = new Dictionary<string, string>(Model.RouteParams);
+        if (!routeData.TryAdd("p", item.TargetPage.ToString()))
+        {
+            routeData["p"] = item.TargetPage.ToString();
+        }
+        <li class="page-item @(item.Active?"active":"") @(item.Disabled?"disabled":"")">
+            <a class="page-link"  asp-all-route-data="routeData">@item.Text</a>
+        </li>
+    }
+</ul>

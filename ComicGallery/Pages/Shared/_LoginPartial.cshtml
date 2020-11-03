@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ComicGallery.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var CurrentUser = await UserManager.GetUserAsync(User);
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">欢迎, @User.Identity.Name</a>
+        <div class="dropdown-menu dropdown-md-right">
+            <a class="nav-link text-dark" asp-page="/Account/ChangePassword" title="ChangePassword">修改密码</a>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/PersonalData" title="PersonalData">个人信息</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" asp-page="/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link text-dark">退出</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+            <span>请登录</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-md-right">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">登录</a>
+
+        </div>
+    </li>
+}

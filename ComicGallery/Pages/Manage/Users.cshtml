@@ -1,0 +1,42 @@
+﻿@page
+@using Microsoft.EntityFrameworkCore;
+@model ComicGallery.Pages.Manage.UsersModel
+@inject UserManager<ApplicationUser> Usermanager
+@{
+    ViewData["Title"] = "管理用户";
+    var Users = await Usermanager.Users.ToListAsync();
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <a class="btn btn-default" asp-page="/Manage/AddUser">新增用户</a>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width:15px">#</th>
+                            <th>用户名</th>
+                            <th>角色</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var user in Users)
+                        {
+                            <tr>
+                                <td>@(Users.IndexOf(user)+1)</td>
+                                <td>@user.UserName</td>
+                                <td>@string.Join(", ",await Usermanager.GetRolesAsync(user))</td>
+                                <td>
+                                    <a class="btn btn-default" asp-page="/Manage/EditUser" asp-route-id="@user.Id">编辑</a>
+                                    <a class="btn btn-danger ml-1" asp-page="/Manage/DeleteUser" asp-route-id="@user.Id">删除</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
